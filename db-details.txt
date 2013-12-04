@@ -1,0 +1,30 @@
+friend connect
+
+database design
+
+users
+	id
+	username
+	email
+	password
+	status
+	created_at
+	updated_at
+
+messages
+	id
+	profile_id
+	message
+	poster_id
+	created_at
+	updated_at
+
+comments
+	id
+	message_id
+	comment
+	poster_id
+	created_at
+	updated_at
+
+
