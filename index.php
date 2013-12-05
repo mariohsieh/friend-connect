@@ -2,11 +2,9 @@
 	session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html xml:lang="en" lang="en">
 <head>
-
-	<!-- Mario Hsieh -->
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<title>Friend Connect</title>
 
 	<!-- jQuery links -->
@@ -31,28 +29,42 @@
 	</header>
 	<section class="container center" >
 		<form action="process.php" method="post">
-			<article class="signin-box center">
+			<article id="login-wrap" class="signin-wrap center">
 				<h2>Login</h2>
 				<input type="text" name="luser" placeholder="Username" class="block signin" />
 				<input type="password" name="lpass" placeholder="Password" class="block signin" />
-				<input type="submit" class="block signin" value="Login" />
+				<input id="login" type="submit" class="block signin submit pointer" value="Login" />
 				<a href="#" class="block signin">Don't have an account?</a>
 			</article>
-			<article class="signin-box center">
+			<article id="register-wrap" class="signin-wrap center">
 				<h2>Registration</h2>
-				<input type="text" name="ruser" placeholder="Username" class="block signin" />
-				<input type="text" name="email" placeholder="Email Address" class="block signin" />
-				<input type="password" name="rpass" placeholder="Password must be at least 8 characters" class="block signin" />
-				<input type="password" name="rpassconf" placeholder="Password Confirmation" class="block signin" />
-				<input type="submit" class="block signin" value="Login" />
-				<a href="#" class="block signin">Don't have an account?</a>
+				<ul>
+					<li>
+						<input id="ruser" type="text" name="ruser" placeholder="Username" maxlength="50" class="signin-box" />
+						<span class="check-dot"></span>
+					</li>
+					<li>
+						<label for="ruser" class="signin-label">Only letters and numbers</label>
+					</li>
+<!--					<input id="remail" type="email" name="remail" placeholder="Email Address" class="block signin" />
+						<label for="remail" class="block signin">Use proper email format</label>
+						<input id="rpass" type="password" name="rpass" placeholder="Password" class="block signin" />
+						<label for="rpass" class="block signin">Must be at least 8 characters</label>
+						<input id="rpassconf" type="password" name="rpassconf" placeholder="Password Confirmation" class="block signin" />
+						<label for="rpassconf" class="block signin">Must match password exactly</label>
+						<input id="register" type="submit" class="block signin submit pointer" value="Register" />
+						<a href="#" class="block signin">Already have an account?</a>
+-->
+				</ul>
 			</article>
 			
 			<input id="action_key" name="action_key" type="hidden" />
 		</form>
 	</section>
+	<footer>
+		<script type="text/javascript" src="js/index.js" ></script>
+	</footer>
 </body>
-	<script type="text/javascript" src="js/index.js"></script>
 </html>
 
 

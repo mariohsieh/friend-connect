@@ -24,9 +24,19 @@
 	float: left;
 }
 
+.pointer
+{
+	cursor: pointer;
+}
+
 .container
 {
 	width: 800px;
+}
+
+ul
+{
+	list-style-type: none;
 }
 
 a
@@ -43,32 +53,56 @@ header
 
 nav ul
 {
-	list-style-type: none;
 	font-size: 1.5em;
 }
 
-.signin-box
+#login-wrap
 {
-	width: 210px;
+	display: none;
 }
 
-	.signin-box h2
+.signin-wrap
+{
+	width: 250px;
+}
+
+	.signin-wrap h2
 	{
 		text-align: center;
 	}
 
-.signin
+.signin-box, .signin-label
 {
-	border: none;
-	font-size: 1.2em;
-	width: 200px;
-	padding: 5px;
+	width: 150px;
 }
 
+.signin-box
+{
+	border: none;
+	font-size: 1.1em;
+	padding: 5px;
+	margin: 0px;
+	height: 22px;
+	vertical-align: middle;
+}
 
+	.check-dot
+	{
+		display: inline-block;
+		background-color: red;
+		width: 21px;
+		height: 21px;
+		border-radius: 100%;
+		margin: 0px 0px 0px 5px;
+		vertical-align: middle;
+	}
 
-
-
+.signin-label
+{
+	font-size: .9em;
+	padding: 0px 0px 0px 5px;
+	cursor: text;
+}
 
 
 

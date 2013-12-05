@@ -2,6 +2,8 @@
 	session_start();
 	include_once("connection.php");
 
+//var_dump($_POST);
+
 class Process
 {
 	// declare variables
@@ -25,7 +27,7 @@ class Process
 					$this->login();
 					break;
 				case 'friendsList':
-					$this->friendslist();
+					$this->friendsList();
 					break;
 				case 'addFriend':
 					$this->addFriend();
@@ -41,16 +43,19 @@ class Process
 		}
 	}
 
-	private function login()
+	private function register()
 	{
-		// check username input valididation for login
-		$luser = $this->checkInput($_POST['luser']);
-		if (!isset($luser) || $luser == "" || !preg_match("/^[a-zA-Z]*$/", $luser))
-		{
-			$errors['luserError'] = "Please input a valid username.";
-		}		
-	}
+		// check to see if email address has already been registered
+		//$query = "SELECT * FROM users WHERE email = '{$remail}'";
+		//$users = $this->connection->fetch_all($query);
 
+		// Register new user
+		$query = "INSERT INTO users (username, email, password, created_at) VALUES ('{$_POST['ruser']}', '{$_POST['remail']}', '".md5($_POST['rpass'])."', NOW())";
+		mysql_query($query);
+
+		// Go back to login page
+		header("Location: index.php");
+	}
 }
 
 // create instance of Process
