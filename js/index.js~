@@ -9,9 +9,33 @@ $(document).ready(function() {
 		//console.log($("#action_key").val());
 	});
 
-	function checkUsername() {
-		
+	function checkUsername(name) {
+		name = name.trim();
+		var pattern = /^[A-Za-z0-9]+$/g;
+		var result = pattern.test(name);
+		//console.log(result);		
+
+		if (name == "" || name == null) {
+			return false;
+		} else if (name.length < 3) {
+			return false;
+		} else if (!result) {
+			return false;			
+		} else {
+			return true;
+		}
 	}
+
+	$("#ruser").keyup(function() {
+		var temp = $(this).val();
+		//console.log(temp);
+
+		if (checkUsername(temp)) {
+			$(this).next().css("background-color", "green");
+		} else {
+			$(this).next().css("background-color", "red");
+		}
+	});
 
 /*
 	$("form").submit(function() {

@@ -44,6 +44,11 @@ a
 	text-decoration: none;
 }
 
+body
+{
+	font-family: "Verdana", "Helvetica", sans-serif;
+}
+
 header
 {
 	height: 40px;
@@ -71,6 +76,11 @@ nav ul
 		text-align: center;
 	}
 
+	.signin-wrap li
+	{
+		margin-bottom: 10px;
+	}
+
 .signin-box, .signin-label
 {
 	width: 150px;
@@ -90,8 +100,8 @@ nav ul
 	{
 		display: inline-block;
 		background-color: red;
-		width: 25px;
-		height: 25px;
+		width: 21px;
+		height: 21px;
 		border-radius: 100%;
 		margin: 0px 0px 0px 5px;
 		vertical-align: middle;
