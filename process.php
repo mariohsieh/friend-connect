@@ -44,6 +44,59 @@ class Process
 		}
 	}
 
+	private function login()
+	{
+		// set variables
+		$user = $_POST['luser'];
+		$pass = $_POST['lpass'];
+
+		// check for valid username
+		if (!isset($user) || $user == "" || !preg_match("/^[a-zA-Z]*$/", $user))
+		{
+			$this->alerts['userError'] = "Please enter a valid username.";
+		}
+		
+		// check for valid password
+		$pass = $_POST['lpass'];
+		if (!isset($pass) || strlen($pass)<8)
+		{
+			$this->alerts['passwordError'] = "Please enter a valid password.";
+		}
+
+		//var_dump($this->alerts);
+		//die();
+
+		if (count($this->alerts) == 0)
+		{
+
+			// check for username and matching password in database
+			$query = "SELECT * FROM users WHERE username = '{$user}' AND password = '".md5($pass)."'";
+			$users = $this->connection->fetch_all($query);
+
+			//var_dump($users);
+			//die();
+
+			if (count($users)>0)
+			{
+				$_SESSION['logged_in'] = true;
+				$_SESSION['id'] = $users[0]['id'];
+				$_SESSION['username'] = $users[0]['username'];
+				$_SESSION['email'] = $users[0]['email'];
+
+				//var_dump($_SESSION);
+				//die();
+				header("Location: dashboard.php");
+				die();
+			}
+			else
+			{
+				$this->alerts['loginError'] = "Login error.  Please try again.";
+			}
+		}
+		// send alerts to frontend using json
+		echo json_encode($this->alerts);
+	}
+
 	private function register()
 	{
 		// back-end validation checks
@@ -66,11 +119,13 @@ class Process
 			$this->alerts['emailError'] = "Please input a valid email address.";
 		}
 
-		// check password
+		// check password & confirmation
 		if (!isset($pass) || $pass == "" || strlen($pass)<8)
 		{
 			$this->alerts['passError'] = "Please input a valid password.";
-			if (!isset($confirm) || $confirm == "" || strlen($confirm)<8 || $confirm != $pass)
+		}
+		elseif (!isset($confirm) || $confirm == "" || strlen($confirm)<8 || $confirm != $pass)
+		{
 				$this->alerts['confirmError'] = "Please confirm your password.";
 		}
 
@@ -78,6 +133,7 @@ class Process
 		//if (count($alerts)>0)
 			//$_SESSION['alerts'] = $alerts;
 		//else
+
 		if (count($this->alerts) == 0)
 		{		
 			// check to see if email address has already been registered
@@ -86,16 +142,25 @@ class Process
 
 			if (count($users)>0)
 			{
-				$this->alerts['emailError'] = "Your email is already on record.  Please login.";
-				//$_SESSION['alerts'] = $alerts;	
-			}			
-			else {
-				// Register new user
-				$query = "INSERT INTO users (username, email, password, created_at) VALUES ('{$user}', '{$email}', '".md5($pass)."', NOW())";
-				mysql_query($query);
-
-				$this->alerts['success'] = "Thank you for registering.  Please login now!";
-				//$_SESSION['alerts'] = $alerts;
+				$this->alerts['emailError'] = "Your email is already on record.  Please login.";	
+			}		
+			else 
+			{
+				// check to see if username has already been taken
+				$query = "SELECT * FROM users WHERE username = '{$user}'";
+				$users = $this->connection->fetch_all($query);
+				
+				if (count($users)>0)
+				{
+					$this->alerts['userError'] = "This username has already been taken.  Please choose another.";	
+				}
+				else
+				{		
+					// register new user
+					$query = "INSERT INTO users (username, email, password, created_at) VALUES ('{$user}', '{$email}', '".md5($pass)."', NOW())";
+					mysql_query($query);
+					$this->alerts['success'] = "Thank you for registering.  Please login now!";
+				}
 			}
 		}
 
@@ -104,9 +169,6 @@ class Process
 
 		// send data to frontend using json
 		echo json_encode($this->alerts);
-
-		// Go back to sign-in page
-		//header("Location: index.php");
 	}
 
 	// checks input text
@@ -123,28 +185,3 @@ class Process
 $process = new Process();
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

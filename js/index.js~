@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
 	// action choice on form submission
 	$(document).on("click", ".submit", function() {
 		var temp = $(this).attr("id");
@@ -12,7 +13,6 @@ $(document).ready(function() {
 			default:
 				break;
 		}
-		//console.log($("#action_key").val());
 	});
 
 	/////////////// validation checks //////////////////
@@ -216,7 +216,26 @@ $(document).ready(function() {
 */
 
 	$(document).on("click", ".clear", function() {
+		$(".check-dot").css("background-color", "white");
+	});
 
+	// clear inputs fields and status dots
+	$(document).on("click", ".alert-but", function() {
+			$("#alerts p").empty();
+			$("#overlay").css("display", "none");
+			$("#alerts").css("display", "none");
+	});
+
+	// toggle between registration and login forms
+	$(document).on("click", ".signin-toggle", function() {
+		if ($("#login-wrap").css("display") == "none") {
+			$("#register-wrap").css("display", "none");
+			$("#login-wrap").fadeIn("fast");
+		} else {
+			$("#login-wrap").css("display", "none");
+			$("#register-wrap").fadeIn("fast");
+		}
+		return false;
 	});
 
 	$("form").submit(function() {
@@ -224,25 +243,19 @@ $(document).ready(function() {
 			$(this).attr('action'),
 			$(this).serialize(),
 			function(data) {
-				$("#overlay").css("display", "block");
-				$("#alerts").css("display", "block");
-				//console.log(data);
+				console.log(data);
+				$("#overlay").fadeIn("fast");
+				$("#alerts").fadeIn(500);
 				for (var x in data) {
-					$("#alerts").prepend("<p>"+data[x]+"</p>");
+					if (data[x] != true) {
+						$("#alerts").prepend("<p>"+data[x]+"</p>");
+					}
 				}
 			},
 			"json"
 		);
 		return false;
 	});
-
-	$(document).on("click", ".alert-but", function() {
-			$("#alerts p").empty();
-			$("#overlay").css("display", "none");
-			$("#alerts").css("display", "none");
-			
-	});
-
 });
 
 
