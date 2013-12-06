@@ -49,6 +49,42 @@ body
 	font-family: "Verdana", "Helvetica", sans-serif;
 }
 
+#overlay
+{
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: black;
+	opacity: .85;
+	z-index: 50;
+}
+
+#alerts
+{
+	display: none;
+	position: absolute;
+	background-color: white;
+	margin: auto auto;
+	width: 300px;
+	height: 300px;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	opacity: 1;
+	z-index: 100;
+}
+
+#alert-but
+{
+
+}
+
 header
 {
 	height: 40px;
@@ -68,7 +104,12 @@ nav ul
 
 .signin-wrap
 {
+	border: 2px solid black;
+	border-radius: 25px;
 	width: 250px;
+	margin-top: 75px;
+	padding: 12px 5px;
+
 }
 
 	.signin-wrap h2
@@ -76,19 +117,25 @@ nav ul
 		text-align: center;
 	}
 
+	.signin-wrap ul
+	{
+		padding: 0px 0px 0px 30px;
+	}
+
 	.signin-wrap li
 	{
 		margin-bottom: 10px;
 	}
 
-.signin-box, .signin-label
-{
-	width: 150px;
-}
+	.signin-wrap a
+	{
+		font-size: .8em;
+	}
 
 .signin-box
 {
 	border: none;
+	width: 150px;
 	font-size: 1.1em;
 	padding: 5px;
 	margin: 0px;
@@ -99,7 +146,7 @@ nav ul
 	.check-dot
 	{
 		display: inline-block;
-		background-color: red;
+		background-color: white;
 		width: 21px;
 		height: 21px;
 		border-radius: 100%;
@@ -114,8 +161,16 @@ nav ul
 	cursor: text;
 }
 
+.signin-but
+{
+	border: none;
+	font-size: 1.1em;
+}
 
+.submit
+{
 
+}
 
 
 
