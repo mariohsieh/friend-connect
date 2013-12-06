@@ -20,7 +20,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
 </head>
 <body class="reset">
-	<span id="alerts"><button id="alert-but" class="center">OK</button></span>
+	<span id="alerts" class="round-box"><div class="alert-but center pointer">OK</div></span>
 	<div id="overlay"></div>
 	<header>
 		<nav class="container center">
@@ -44,11 +44,11 @@
 						<input id="login" type="submit" class="block signin submit pointer" value="Login" />
 					</li>
 					<li>
-						<a href="#" class="block signin">Don't have an account?</a>
+						<a href="#" class="block">Don't have an account?</a>
 					</li>
 				</ul>
 			</article>
-			<article id="register-wrap" class="signin-wrap center">
+			<article id="register-wrap" class="signin-wrap round-box center">
 				<h2 class="reset">Registration</h2>
 				<ul class="reset">
 					<li>
@@ -72,7 +72,7 @@
 						<label for="rpassconf" class="block signin-label">Must match password exactly</label>
 					</li>
 					<li>
-						<input type="reset" value="Clear" class="signin-but pointer" /><input id="register" type="submit" class=" signin-but pointer submit" value="Register" />
+						<input type="reset" value="Clear" class="signin-but pointer clear" /><input id="register" type="submit" class=" signin-but pointer submit" value="Register" />
 						<a href="#" class="block">Already have an account?</a>
 					</li>
 

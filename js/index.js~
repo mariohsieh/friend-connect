@@ -15,7 +15,8 @@ $(document).ready(function() {
 		//console.log($("#action_key").val());
 	});
 
-	// validation checks
+	/////////////// validation checks //////////////////
+	// username check
 	function checkUsername(name) {
 		name = name.trim();
 		var pattern = /^[A-Za-z0-9]+$/g;
@@ -32,40 +33,8 @@ $(document).ready(function() {
 			return true;
 		}
 	}
-/*
-	$("#ruser").focus(function() {
-		var temp = $(this).val();
 
-		if (!checkUsername(temp)) {
-			$(this).next().css("background-color", "grey");
-		} else {
-			$(this).next().css("background-color", "green");
-		}
-	});
-
-	$("#ruser").focusout(function() {
-		var temp = $(this).val();
-
-		if (temp == "" || temp == null) {
-			$(this).next().css("background-color", "white");
-		} else if (!checkUsername(temp)) {
-			$(this).next().css("background-color", "grey");
-		} else {
-			$(this).next().css("background-color", "green");
-		}
-	});
-*/
-	$("#ruser").keyup(function() {
-		var temp = $(this).val();
-		//console.log(temp);
-
-		if (checkUsername(temp)) {
-			$(this).next().css("background-color", "green");
-		} else {
-			$(this).next().css("background-color", "grey");
-		}
-	});
-
+	// email address check
 	function checkEmail(email) {
 		email = email.trim();
 		var pattern = /[@]/g;
@@ -87,16 +56,7 @@ $(document).ready(function() {
 		}
 	}
 
-	$("#remail").keyup(function() {
-		var temp = $(this).val();
-
-		if (checkEmail(temp)) {
-			$(this).next().css("background-color", "green");
-		} else {
-			$(this).next().css("background-color", "grey");
-		}
-	});
-
+	// password check
 	function checkPassword(pass) {
 		if (pass.length < 8) {
 			return false;
@@ -105,16 +65,7 @@ $(document).ready(function() {
 		}
 	}
 
-	$("#rpass").keyup(function() {
-		var temp = $("#rpass").val();
-
-		if (checkPassword(temp)) {
-			$(this).next().css("background-color", "green");
-		} else {
-			$(this).next().css("background-color", "grey");
-		}			
-	});
-
+	// confirm password check
 	function confirmPassword(pass1, pass2) {
 		if (checkPassword(pass1)) {
 			if (pass1 === pass2) {
@@ -125,20 +76,130 @@ $(document).ready(function() {
 		}
 	}
 
-	$("#rpassconf").keyup(function() {
-		var temp = $("#rpass").val();
-		var temp2 = $(this).val();
-		if (temp.length > 0 && temp2.length > 0) {
-			if (confirmPassword(temp,temp2)) {
-				$("#01,#02, #03, #04").css("background-color", "green");
-				//$(this).next().css("background-color", "green");
-				//var temp3 = $(this).next().css("background-color");
-				//if (temp3 = "green") {
-				//	console.log("holla!");
-				//}
-			} else {
-				$(this).next().css("background-color", "grey");
-			}
+	// focus in status update
+	$("#ruser, #remail, #rpass, #rpassconf").focus(function() {
+		var temp = $(this).val();
+		var id = $(this).attr("id");
+		switch (id) {
+			case 'ruser':
+				if (!checkUsername(temp)) {
+					$(this).next().css("background-color", "grey");
+				} else {
+					$(this).next().css("background-color", "green");
+				}
+				break;
+			case 'remail':
+				if (!checkEmail(temp)) {
+					$(this).next().css("background-color", "grey");
+				} else {
+					$(this).next().css("background-color", "green");
+				}
+				break;
+			case 'rpass':
+				if (!checkPassword(temp)) {
+					$(this).next().css("background-color", "grey");
+				} else {
+					$(this).next().css("background-color", "green");
+				}
+				break;
+			case 'rpassconf':
+				var temp2 = $("#rpass").val();
+				if (!confirmPassword(temp2, temp)) {
+					$(this).next().css("background-color", "grey");
+				} else {
+					$(this).next().css("background-color", "green");
+				}
+				break;				
+			default:
+				break;
+		}
+	});
+
+	// focus out status update
+	$("#ruser, #remail, #rpass, #rpassconf").focusout(function() {
+		var temp = $(this).val();
+		var id = $(this).attr("id");
+		switch (id) {
+			case 'ruser':
+				if (temp == "" || temp == null) {
+					$(this).next().css("background-color", "white");
+				} else if (!checkUsername(temp)) {
+					$(this).next().css("background-color", "grey");
+				} else {
+					$(this).next().css("background-color", "green");
+				}
+				break;
+			case 'remail':
+				if (temp == "" || temp == null) {
+					$(this).next().css("background-color", "white");
+				} else if (!checkEmail(temp)) {
+					$(this).next().css("background-color", "grey");
+				} else {
+					$(this).next().css("background-color", "green");
+				}
+				break;
+			case 'rpass':
+				if (temp == "" || temp == null) {
+					$(this).next().css("background-color", "white");
+				} else if (!checkPassword(temp)) {
+					$(this).next().css("background-color", "grey");
+				} else {
+					$(this).next().css("background-color", "green");
+				}
+				break;
+			case 'rpassconf':
+				var temp2 = $("#rpass").val();
+				if (temp == "" || temp == null) {
+					$(this).next().css("background-color", "white");
+				} else if (!confirmPassword(temp2, temp)) {
+					$(this).next().css("background-color", "grey");
+				} else {
+					$(this).next().css("background-color", "green");
+				}
+				break;
+			default:
+				break;
+		}
+	});
+
+	// key press status update
+	$("#ruser, #remail, #rpass, #rpassconf").keyup(function() {
+		var temp = $(this).val();
+		var id = $(this).attr("id");
+		switch (id) {
+			case 'ruser':
+				if (checkUsername(temp)) {
+					$(this).next().css("background-color", "green");
+				} else {
+					$(this).next().css("background-color", "grey");
+				}
+				break;
+			case 'remail':
+				if (checkEmail(temp)) {
+					$(this).next().css("background-color", "green");
+				} else {
+					$(this).next().css("background-color", "grey");
+				}
+				break;
+			case 'rpass':
+				if (checkPassword(temp)) {
+					$(this).next().css("background-color", "green");
+				} else {
+					$(this).next().css("background-color", "grey");
+				}
+				break;
+			case 'rpassconf':
+				var temp2 = $("#rpass").val();
+				if (temp.length > 0 && temp2.length > 0) {
+					if (confirmPassword(temp2, temp)) {
+						$(this).next().css("background-color", "green");
+					} else {
+						$(this).next().css("background-color", "grey");
+					}
+				}
+				break;
+			default:
+				break;
 		}
 	});
 
@@ -154,20 +215,32 @@ $(document).ready(function() {
 	});
 */
 
+	$(document).on("click", ".clear", function() {
+
+	});
+
 	$("form").submit(function() {
 		$.post(
 			$(this).attr('action'),
 			$(this).serialize(),
 			function(data) {
 				$("#overlay").css("display", "block");
-				console.log(data);
+				$("#alerts").css("display", "block");
+				//console.log(data);
 				for (var x in data) {
-					$("#alerts").append("<p>"+data[x]+"</p>");
+					$("#alerts").prepend("<p>"+data[x]+"</p>");
 				}
 			},
 			"json"
 		);
 		return false;
+	});
+
+	$(document).on("click", ".alert-but", function() {
+			$("#alerts p").empty();
+			$("#overlay").css("display", "none");
+			$("#alerts").css("display", "none");
+			
 	});
 
 });

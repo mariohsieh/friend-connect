@@ -99,7 +99,7 @@ class Process
 			}
 		}
 
-		//var_dump($this->alerts);
+		var_dump($this->alerts);
 		//die();
 
 		// send data to frontend using json

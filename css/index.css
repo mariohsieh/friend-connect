@@ -34,6 +34,12 @@
 	width: 800px;
 }
 
+.round-box
+{
+	border: 2px solid black;
+	border-radius: 25px;
+}
+
 ul
 {
 	list-style-type: none;
@@ -78,11 +84,19 @@ body
 	bottom: 0;
 	opacity: 1;
 	z-index: 100;
+	padding: 5px 25px;
 }
 
-#alert-but
+.alert-but
 {
-
+	text-align: center;
+	background-color: black;
+	vertical-align: baseline;
+	color: white;
+	width: 100px;
+	height: 30px;
+	font-size: 1.1em;
+	padding: 6px 0px 0px;
 }
 
 header
@@ -104,8 +118,6 @@ nav ul
 
 .signin-wrap
 {
-	border: 2px solid black;
-	border-radius: 25px;
 	width: 250px;
 	margin-top: 75px;
 	padding: 12px 5px;
@@ -129,6 +141,7 @@ nav ul
 
 	.signin-wrap a
 	{
+		padding: 10px 0px 0px 5px;
 		font-size: .8em;
 	}
 
@@ -163,6 +176,8 @@ nav ul
 
 .signin-but
 {
+	background-color: black;
+	color: white;
 	border: none;
 	font-size: 1.1em;
 }
@@ -171,8 +186,6 @@ nav ul
 {
 
 }
-
-
 
 
 
