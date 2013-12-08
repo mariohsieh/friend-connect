@@ -25,6 +25,8 @@ class ProcessDash
 				case 'wall':
 					$this->wall();
 					break;
+				default:
+					break;
 			}
 		}
 		else
@@ -35,6 +37,16 @@ class ProcessDash
 			die();
 		}
 	}
+
+	// get all users data from database
+	private function friendsList() {
+		$query = "SELECT * FROM users";
+		$users = $this->connection->fetch_all($query);
+
+		// send all users data to front end
+		echo json_encode($users);
+	}
+
 }
 
 // create instance of process dashboard

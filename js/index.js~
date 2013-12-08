@@ -248,9 +248,7 @@ $(document).ready(function() {
 				$("#overlay").fadeIn("fast");
 				$("#alerts").fadeIn(400);
 				for (var x in data) {
-					if (data[x] != true) {
-						$("#alerts").prepend("<p>"+data[x]+"</p>");
-					}
+					$("#alerts").prepend("<p>"+data[x]+"</p>");
 				}
 				$("#alerts").append("<input type='submit' class='alert-but center pointer' autofocus value='OK' />");
 				$("#alerts input").focus();

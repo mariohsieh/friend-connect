@@ -77,6 +77,7 @@ class Process
 				$_SESSION['id'] = $users[0]['id'];
 				$_SESSION['username'] = $users[0]['username'];
 				$_SESSION['email'] = $users[0]['email'];
+				$_SESSION['created_at'] = $users[0]['created_at'];
 
 				//var_dump($_SESSION);
 				//die();

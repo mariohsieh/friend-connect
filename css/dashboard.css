@@ -1,4 +1,66 @@
+a
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+nav ul
+{
+	vertical-align: middle;
+}
+
 nav li
 {
 	display: inline;
 }
+
+#logout-but
+{
+	background-color: black;
+	color: white;
+	font-size: .8em;
+	padding: 5px;
+}
+
+#login-name
+{
+	font-size: .8em;
+}
+
+#display-info
+{
+	height: 140px;
+	padding: 10px 0px 0px 5px;
+}
+
+img#profile-pic
+{
+	width: 125px;
+	height: 125px;
+	background-color: black;
+}
+
+#display-created
+{
+	font-size: .7em;
+}
+
+div
+{
+	width: 49%;
+	text-align: center;
+	display: inline-block;
+}
+
+.menu-choice
+{
+	
+}
+
+
+
+
+
+
+
+
