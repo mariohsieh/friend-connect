@@ -1,6 +1,12 @@
 <?php
 	session_start();
 	include_once("connection.php");
+
+	if (!isset($_SESSION['logged_in']))
+	{
+		session_destroy();
+		header("Location: index.htm");
+	}
 ?>
 <!DOCTYPE html>
 <html xml:lang="en" lang="en">
@@ -18,11 +24,62 @@
 		});
 	</script>
 
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
 	<link rel="stylesheet" type="text/css" href="css/dashboard.css" />
 </head>
 <body class="reset">
-	<span>hi there</span>
-	<p><?= $_SESSION['id'] ?>
+	<header>
+		<nav class="container center">
+			<ul class="reset">
+				<li>FriendConnect</li>
+
+				<li>Welcome 
+<?
+	if (isset($_SESSION['username']))
+		echo $_SESSION['username'];
+?>!
+				</li>
+				<li><a href="process-dash.php">Logout</a></li>
+			</ul>
+		</nav>
+	</header>
+	<section class="container center">
+		<p>
+<?
+	if (isset($_SESSION['email']))
+		echo $_SESSION['email']
+?>
+		</p>
+		<p>
+<? if (isset($_SESSION['id']))
+		echo $_SESSION['id']
+?>
+		</p>
+	</section>
 	<script type="text/javascript" src="js/dashboard.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

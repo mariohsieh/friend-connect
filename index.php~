@@ -1,6 +1,3 @@
-<?php
-	session_start();
-?>
 <!DOCTYPE html>
 <html xml:lang="en" lang="en">
 <head>
@@ -20,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
 </head>
 <body class="reset">
-	<span id="alerts" class="round-box"><div class="alert-but center pointer">OK</div></span>
+	<div id="alerts" class="round-box"><div class="alert-but center pointer">OK</div></div>
 	<div id="overlay"></div>
 	<header>
 		<nav class="container center">

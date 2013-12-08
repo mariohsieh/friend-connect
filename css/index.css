@@ -91,12 +91,15 @@ body
 {
 	text-align: center;
 	background-color: black;
-	vertical-align: baseline;
 	color: white;
 	width: 100px;
 	height: 30px;
 	font-size: 1.1em;
-	padding: 6px 0px 0px;
+	padding: 0px;
+	border: none;
+	position: absolute;
+	top: 250px;
+	left: 125px;
 }
 
 header

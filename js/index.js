@@ -215,13 +215,13 @@ $(document).ready(function() {
 	});
 */
 
+	// clear inputs fields and status dots
 	$(document).on("click", ".clear", function() {
 		$(".check-dot").css("background-color", "white");
 	});
 
-	// clear inputs fields and status dots
+	//clear alerts
 	$(document).on("click", ".alert-but", function() {
-			$("#alerts p").empty();
 			$("#overlay").css("display", "none");
 			$("#alerts").css("display", "none");
 	});
@@ -243,6 +243,7 @@ $(document).ready(function() {
 			$(this).attr('action'),
 			$(this).serialize(),
 			function(data) {
+				$("#alerts").empty();
 				console.log(data);
 				$("#overlay").fadeIn("fast");
 				$("#alerts").fadeIn(400);
@@ -251,6 +252,8 @@ $(document).ready(function() {
 						$("#alerts").prepend("<p>"+data[x]+"</p>");
 					}
 				}
+				$("#alerts").append("<input type='submit' class='alert-but center pointer' autofocus value='OK' />");
+				$("#alerts input").focus();
 			},
 			"json"
 		);

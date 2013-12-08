@@ -27,20 +27,15 @@ class Process
 				case 'login':
 					$this->login();
 					break;
-				case 'friendsList':
-					$this->friendsList();
-					break;
-				case 'addFriend':
-					$this->addFriend();
-					break;
-				case 'wall':
-					$this->wall();
-					break;
 				default:
-					session_destroy();
-					header("Location: index.php");
 					break;
 			}
+		}
+		else
+		{
+			session_destroy();
+			header("Location: index.htm");
+			die();		
 		}
 	}
 
@@ -171,7 +166,7 @@ class Process
 		echo json_encode($this->alerts);
 	}
 
-	// checks input text
+	// check input text
 	private function checkInput($item) 
 	{
 		$item = trim($item);
