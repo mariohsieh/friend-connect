@@ -28,6 +28,7 @@
 	<link rel="stylesheet" type="text/css" href="css/dashboard.css" />
 </head>
 <body class="reset">
+	<div id="profile-id"><?= (isset($_SESSION['id'])) ? $_SESSION['id'] : ""; ?></div>
 	<header>
 		<nav class="container center">
 			<ul class="reset">
@@ -51,6 +52,12 @@
 		echo $_SESSION['username'] . "'s profile";
 ?>
 			</h2>
+			<p id="display-status">
+<?
+	if (isset($_SESSION['status']))
+		echo "\""  . $_SESSION['status'] . "\"";
+?>
+			</p>			
 			<p id="display-email">
 <?
 	if (isset($_SESSION['email']))
@@ -64,13 +71,13 @@
 			</p>
 		</article>
 		<article id="wrap-menu">
-			<div class="menu-choice pointer">Friends List</div>
-			<div class="menu-choice pointer">Message Wall</div>
+			<div id="profile-list" class="menu-choice pointer">Friends List</div>
+			<div id="profile-wall" class="menu-choice pointer">Message Wall</div>
 			<form action="process-dash.php" method="post">
 				<input id="action_key" type="hidden" name="action_key" />
 			</form>
 		</article>
-		<article id="result">
+		<article id="results">
 		</article>
 	</section>
 	<script type="text/javascript" src="js/dashboard.js"></script>

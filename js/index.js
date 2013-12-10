@@ -238,6 +238,7 @@ $(document).ready(function() {
 		return false;
 	});
 
+	// form submission
 	$("form").submit(function() {
 		$.post(
 			$(this).attr('action'),

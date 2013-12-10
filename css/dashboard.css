@@ -4,6 +4,16 @@ a
 	color: inherit;
 }
 
+.grey
+{
+	background-color: grey;
+}
+
+#profile-id
+{
+	display: none;
+}
+
 nav ul
 {
 	vertical-align: middle;
@@ -54,13 +64,26 @@ div
 
 .menu-choice
 {
-	
+	font-size: 1.5em;
 }
 
+#friends-table
+{
+	width: 100%;
+}
 
+	#username
+	{
+		width: 20%;
+	}
 
+	#status
+	{
+		width: 60%;
+	}
 
-
-
-
+	#relationship
+	{
+		width: 20%;
+	}
 

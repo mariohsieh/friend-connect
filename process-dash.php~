@@ -41,6 +41,7 @@ class ProcessDash
 	// get all users data from database
 	private function friendsList() {
 		$query = "SELECT * FROM users";
+		//$query = "SELECT * FROM users ORDER BY users.id DESC";
 		$users = $this->connection->fetch_all($query);
 
 		// send all users data to front end
