@@ -46,29 +46,10 @@
 	<section class="container center">
 		<article id="display-info">
 			<img id="profile-pic" alt="Profile Pic" class="left" />
-			<h2 id="display-user" class="reset">
-<?
-	if (isset($_SESSION['username']))
-		echo $_SESSION['username'] . "'s profile";
-?>
-			</h2>
-			<p id="display-status">
-<?
-	if (isset($_SESSION['status']))
-		echo "\""  . $_SESSION['status'] . "\"";
-?>
-			</p>			
-			<p id="display-email">
-<?
-	if (isset($_SESSION['email']))
-		echo "Email: " . $_SESSION['email'];
-?>
-			</p>
-			<p id="display-created">
-<? if (isset($_SESSION['created_at']))
-		echo "Member since " . $_SESSION['created_at'];
-?>
-			</p>
+			<h2 id="display-user" class="reset"></h2>
+			<p id="display-status" class="pointer"></p>			
+			<p id="display-email"></p>
+			<p id="display-created"></p>
 		</article>
 		<article id="wrap-menu">
 			<div id="profile-list" class="menu-choice pointer">Friends List</div>

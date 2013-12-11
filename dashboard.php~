@@ -46,16 +46,14 @@
 	<section class="container center">
 		<article id="display-info">
 			<img id="profile-pic" alt="Profile Pic" class="left" />
-			<h2 id="display-user" class="reset">
-<?
-	if (isset($_SESSION['username']))
-		echo $_SESSION['username'] . "'s profile";
-?>
-			</h2>
-			<p id="display-status">
+			<h2 id="display-user" class="reset"></h2>
+			<p id="display-status" class="pointer">
 <?
 	if (isset($_SESSION['status']))
 		echo "\""  . $_SESSION['status'] . "\"";
+	else {
+		echo "\"click to add status\"";
+	}
 ?>
 			</p>			
 			<p id="display-email">

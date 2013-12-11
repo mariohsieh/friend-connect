@@ -104,9 +104,9 @@ body
 
 header
 {
-	height: 40px;
 	width: 100%;
 	border-bottom: 2px solid black;
+	padding: 5px 0px;
 }
 
 nav ul

@@ -14,11 +14,6 @@ a
 	display: none;
 }
 
-nav ul
-{
-	vertical-align: middle;
-}
-
 nav li
 {
 	display: inline;
@@ -71,6 +66,16 @@ div
 {
 	width: 100%;
 }
+
+	th
+	{
+		background-color: #C0C0C0;
+	}
+
+	td
+	{
+		padding: 0px 7px 0px;
+	}
 
 	#username
 	{
