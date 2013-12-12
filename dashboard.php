@@ -51,7 +51,7 @@
 		<article id="display-info">
 			<img id="profile-pic" alt="Profile Pic" class="left" />
 			<h2 id="display-user" class="reset"></h2>
-			<p id="display-status" class="pointer"></p>			
+			<p id="display-status"></p>			
 			<p id="display-email"></p>
 			<p id="display-created"></p>
 		</article>

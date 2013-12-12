@@ -4,6 +4,7 @@ $(document).ready(function() {
 	var users = new Array();
 	var profile = new Array();
 	var tempID = $("#profile-id").html();
+	var loggedID = $("#profile-id").html();
 
 	// toggle profile list or profile wall
 	$(document).on("click", ".menu-choice", function() {
@@ -53,24 +54,42 @@ $(document).ready(function() {
 	// change profile view
 	$(document).on("click", ".user", function() {
 		tempID = $(this).attr("id");
+		//console.log(tempID);
 		setProfileUser(tempID, users);
+	});
+
+
+	// hover states for status
+	$(document).on("mouseenter", "#display-status", function() {
+		console.log(tempID);
+		console.log(loggedID);
+		if (tempID == loggedID) {
+			//alert("hi");
+			$(this).css("cursor", "pointer");
+		}
+	});
+
+	$(document).on("mouseleave", "#display-status", function() {
+		$(this).css("cursor", "text");
 	});
 
 	// show edit status box
 	$(document).on("click", "#display-status", function() {
-		$("#overlay").fadeIn("fast");
-		$(this).css("visibility", "hidden");
-		var content = "<input id='edit-status' placeholder='How are you feeling?' type='text' name='edit_status' class='edit' />";
-		content += "<div id='edit-submit' class='pointer edit'>update</div>";
-		content += "<input type='hidden' name='edit_id' value='"+ profile['id'] + "' class='edit' />";
+		if (tempID == loggedID) {
+			$("#overlay").fadeIn("fast");
+			$(this).css("visibility", "hidden");
+			var content = "<input id='edit-status' placeholder='How are you feeling?' type='text' name='edit_status' class='edit' />";
+			content += "<div id='edit-submit' class='pointer edit'>update</div>";
+			content += "<input type='hidden' name='edit_id' value='"+ profile['id'] + "' class='edit' />";
 
-		$(this).prev().after(content);
+			$(this).prev().after(content);
 		
-		if ($(this).html() != "click to add status") {
-			var temp = $(this).html();
-			var statuslength = temp.length;
-			temp = temp.slice(1,statuslength-1);
-			$("#edit-status").val(temp);
+			if ($(this).html() != "click to add status") {
+				var temp = $(this).html();
+				var statuslength = temp.length;
+				temp = temp.slice(1,statuslength-1);
+				$("#edit-status").val(temp);
+			}
 		}
 	});
 
