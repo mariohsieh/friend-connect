@@ -25,6 +25,9 @@ class ProcessDash
 				case 'wall':
 					$this->wall();
 					break;
+				case 'editStatus':
+					$this->editStatus();
+					break;
 				default:
 					break;
 			}
@@ -39,13 +42,29 @@ class ProcessDash
 	}
 
 	// get all users data from database
-	private function friendsList() {
+	private function friendsList() 
+	{
 		$query = "SELECT * FROM users";
 		//$query = "SELECT * FROM users ORDER BY users.id DESC";
 		$users = $this->connection->fetch_all($query);
 
 		// send all users data to front end
 		echo json_encode($users);
+	}
+
+	private function editStatus() 
+	{
+		//var_dump($_POST);
+		//die();
+		$query = "UPDATE users SET status = '{$_POST['edit_status']}', updated_at = NOW() WHERE ('{$_POST['edit_id']}') = users.id";
+		mysql_query($query);
+
+		$this->friendsList();
+	}
+
+	private function wall()
+	{
+		header("Location: dashboard.php");
 	}
 
 }

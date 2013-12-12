@@ -28,6 +28,10 @@
 	<link rel="stylesheet" type="text/css" href="css/dashboard.css" />
 </head>
 <body class="reset">
+	<!-- begin form tag -->
+	<form action="process-dash.php" method="post">
+
+	<div id="overlay"></div>
 	<div id="profile-id"><?= (isset($_SESSION['id'])) ? $_SESSION['id'] : ""; ?></div>
 	<header>
 		<nav class="container center">
@@ -47,37 +51,22 @@
 		<article id="display-info">
 			<img id="profile-pic" alt="Profile Pic" class="left" />
 			<h2 id="display-user" class="reset"></h2>
-			<p id="display-status" class="pointer">
-<?
-	if (isset($_SESSION['status']))
-		echo "\""  . $_SESSION['status'] . "\"";
-	else {
-		echo "\"click to add status\"";
-	}
-?>
-			</p>			
-			<p id="display-email">
-<?
-	if (isset($_SESSION['email']))
-		echo "Email: " . $_SESSION['email'];
-?>
-			</p>
-			<p id="display-created">
-<? if (isset($_SESSION['created_at']))
-		echo "Member since " . $_SESSION['created_at'];
-?>
-			</p>
+			<p id="display-status" class="pointer"></p>			
+			<p id="display-email"></p>
+			<p id="display-created"></p>
 		</article>
 		<article id="wrap-menu">
 			<div id="profile-list" class="menu-choice pointer">Friends List</div>
 			<div id="profile-wall" class="menu-choice pointer">Message Wall</div>
-			<form action="process-dash.php" method="post">
-				<input id="action_key" type="hidden" name="action_key" />
-			</form>
+
 		</article>
 		<article id="results">
 		</article>
 	</section>
+
+	<!-- action choice for form and close form tag -->
+		<input id="action_key" type="hidden" name="action_key" />
+	</form>
 	<script type="text/javascript" src="js/dashboard.js"></script>
 </body>
 </html>

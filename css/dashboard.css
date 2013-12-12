@@ -45,21 +45,40 @@ img#profile-pic
 	background-color: black;
 }
 
+#edit-status, #edit-submit
+{
+	position: absolute;
+	z-index: 75;
+	font-size: 1.1em;
+	border: none;
+	height: 21px;
+	padding: 5px;
+}
+
+#edit-status
+{
+	margin: 13px 0px 0px;
+}
+
+#edit-submit
+{
+	background-color: grey;
+	color: white;
+	margin: 13px 0px 0px 360px;
+
+}
+
 #display-created
 {
 	font-size: .7em;
 }
 
-div
-{
-	width: 49%;
-	text-align: center;
-	display: inline-block;
-}
-
 .menu-choice
 {
 	font-size: 1.5em;
+	width: 49%;
+	text-align: center;
+	display: inline-block;
 }
 
 #friends-table

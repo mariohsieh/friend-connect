@@ -28,6 +28,10 @@
 	<link rel="stylesheet" type="text/css" href="css/dashboard.css" />
 </head>
 <body class="reset">
+	<!-- begin form tag -->
+	<form action="process-dash.php" method="post">
+
+	<div id="overlay"></div>
 	<div id="profile-id"><?= (isset($_SESSION['id'])) ? $_SESSION['id'] : ""; ?></div>
 	<header>
 		<nav class="container center">
@@ -54,13 +58,14 @@
 		<article id="wrap-menu">
 			<div id="profile-list" class="menu-choice pointer">Friends List</div>
 			<div id="profile-wall" class="menu-choice pointer">Message Wall</div>
-			<form action="process-dash.php" method="post">
-				<input id="action_key" type="hidden" name="action_key" />
-			</form>
 		</article>
 		<article id="results">
 		</article>
 	</section>
+
+	<!-- action choice for form and close form tag -->
+		<input id="action_key" type="hidden" name="action_key" />
+	</form>
 	<script type="text/javascript" src="js/dashboard.js"></script>
 </body>
 </html>
