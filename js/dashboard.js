@@ -6,29 +6,33 @@ $(document).ready(function() {
 	var tempID = $("#profile-id").html();
 	var loggedID = $("#profile-id").html();
 
-	// toggle profile list or profile wall
-	$(document).on("click", ".menu-choice", function() {
-		var menuChoice = $(this).html();
-	
-		if (menuChoice == "Friends List") {
-			$("#action_key").val("friendsList");
-		} else {
-			$("#action_key").val("wall");
-		}
-
-		formSubmit();
-	});
-
+	////////////////////////////  functions ////////////////////////////
+	// display users
 	function friendsDisplay(list) {
 		users = list;
 	
 		$("#results").html("");
 
 		$("#results").append(function() {
-			var content = "<table id='friends-table'><thead><tr><th id='username' class=''>Username</th><th id='status' class=''>Status</th><th id='relationship' class=''>Relationship</th></tr></thead><tbody>";
+			var content = "<table id='friends-table'><thead>";
+			content += "<tr>";
+			content += "<th id='username' class=''>Username</th>";
+			content += "<th id='status' class=''>Status</th>";
+			content += "<th id='relationship'>Relationship</th>";
+			content += "</tr></thead><tbody>";
+
+			// loop to print users
 			for (var x in list) {
-				content += "<tr><td class='user pointer' id='"+list[x]['id']+"'>"+list[x]['username']+"</td><td>\""+list[x]['status']+"\"</td><td>Friend</td></tr>";
+				if (list[x]['id'] != loggedID) {
+					content += "<tr>";
+					content += "<td class='user pointer' id='"+list[x]['id']+"'>"+list[x]['username']+"</td>";
+					content += "<td>\""+list[x]['status']+"\"</td>";
+					//if ( ) {
+					content += "<td id='add"+list[x]['id']+"' class='friendship pointer'>Add Friend</td>";
+					content += "</tr>";
+				}
 			}
+
 			content += "</tbody></table>";
 			return content;
 		});
@@ -51,6 +55,21 @@ $(document).ready(function() {
 		}
 	}
 
+	// submit function
+	function formSubmit() {
+		$.post(
+			$("form").attr('action'),
+			$("form").serialize(),
+			function(data) {
+				friendsDisplay(data);
+			},
+			"json"
+		);
+		//return false;
+	}
+
+	//////////////////////// event functions ///////////////////////////
+
 	// change profile view
 	$(document).on("click", ".user", function() {
 		tempID = $(this).attr("id");
@@ -58,11 +77,8 @@ $(document).ready(function() {
 		setProfileUser(tempID, users);
 	});
 
-
 	// hover states for status
 	$(document).on("mouseenter", "#display-status", function() {
-		console.log(tempID);
-		console.log(loggedID);
 		if (tempID == loggedID) {
 			//alert("hi");
 			$(this).css("cursor", "pointer");
@@ -102,22 +118,41 @@ $(document).ready(function() {
 		$(".edit").remove();
 	});
 
-	function formSubmit() {
-		$.post(
-			$("form").attr('action'),
-			$("form").serialize(),
-			function(data) {
-				friendsDisplay(data);
-			},
-			"json"
-		);
-		//return false;
-	}
+	// toggle profile list or profile wall
+	$(document).on("click", ".menu-choice", function() {
+		if ($(this).attr("id") == "friendsList") {
+			$("#action_key").val("friendsList");
+		} else {
+			$("#action_key").val("wall");
+		}
 
+		formSubmit();
+	});
+
+	// add a friend
+	$(document).on("click", ".friendship", function() {
+		//alert('hi');
+		var temp = $(this).attr('id');
+		temp = temp.slice(3);
+		//console.log(temp);
+		$("#action_key").before("<input id='user_id' type='hidden' name='user_id' value='"+loggedID+"' />");
+		$("#action_key").before("<input id='friend_id' type='hidden' name='friend_id' value='"+temp+"' />");
+		$("#action_key").val("addFriend");
+		formSubmit();
+		//console.log($("#user_id").val());
+		//console.log($("#friend_id").val());
+	});
+
+	/////////// actions on page load ///////////////
 	$("#action_key").val("friendsList");
 	formSubmit();
 	//$(".menu-choice").click();
 });
+
+
+
+
+
 
 
 

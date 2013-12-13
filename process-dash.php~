@@ -19,14 +19,14 @@ class ProcessDash
 				case 'friendsList':
 					$this->friendsList();
 					break;
+				case 'editStatus':
+					$this->editStatus();
+					break;
 				case 'addFriend':
 					$this->addFriend();
 					break;
 				case 'wall':
 					$this->wall();
-					break;
-				case 'editStatus':
-					$this->editStatus();
 					break;
 				default:
 					break;
@@ -48,6 +48,9 @@ class ProcessDash
 		//$query = "SELECT * FROM users ORDER BY users.id DESC";
 		$users = $this->connection->fetch_all($query);
 
+		$query = "SELECT * FROM friends";
+		$friends = $this->connection->fetch_all($query);
+
 		// send all users data to front end
 		echo json_encode($users);
 	}
@@ -62,6 +65,17 @@ class ProcessDash
 		$this->friendsList();
 	}
 
+	private function addFriend()
+	{
+		//var_dump($_POST);
+		//die();
+		
+		$query = "INSERT INTO friends (user_id, friend_id, created_at) VALUES ('{$_POST['user_id']}', '{$_POST['friend_id']}', NOW())";
+		mysql_query($query);
+
+		//$this->friendsList();
+	}
+
 	private function wall()
 	{
 		header("Location: dashboard.php");
@@ -73,3 +87,17 @@ class ProcessDash
 $processdash = new ProcessDash;
 
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

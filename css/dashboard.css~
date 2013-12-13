@@ -57,7 +57,6 @@ img#profile-pic
 
 #edit-status
 {
-	padding: 5px;
 	margin: 13px 0px 0px;
 }
 
@@ -65,9 +64,7 @@ img#profile-pic
 {
 	background-color: grey;
 	color: white;
-	position: absolute;
 	margin: 13px 0px 0px 360px;
-
 }
 
 #display-created
@@ -113,3 +110,7 @@ img#profile-pic
 		width: 20%;
 	}
 
+	.friendship
+	{
+		text-align: center;
+	}

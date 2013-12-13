@@ -65,7 +65,6 @@ img#profile-pic
 	background-color: grey;
 	color: white;
 	margin: 13px 0px 0px 360px;
-
 }
 
 #display-created
@@ -110,4 +109,15 @@ img#profile-pic
 	{
 		width: 20%;
 	}
+
+	.friendship
+	{
+		text-align: center;
+		
+	}
+
+
+
+
+
 
