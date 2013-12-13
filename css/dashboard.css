@@ -110,10 +110,9 @@ img#profile-pic
 		width: 20%;
 	}
 
-	.friendship
+	.friend, .add-friend
 	{
 		text-align: center;
-		
 	}
 
 

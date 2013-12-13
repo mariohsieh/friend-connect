@@ -2,15 +2,18 @@ $(document).ready(function() {
 
 	//set variables
 	var users = new Array();
+	var friends = new Array();
 	var profile = new Array();
 	var tempID = $("#profile-id").html();
 	var loggedID = $("#profile-id").html();
 
 	////////////////////////////  functions ////////////////////////////
 	// display users
-	function friendsDisplay(list) {
-		users = list;
-	
+	function usersDisplay(list) {
+		users = list['users'];
+		friends = list['friends'];
+		//console.log(users);		
+
 		$("#results").html("");
 
 		$("#results").append(function() {
@@ -19,24 +22,24 @@ $(document).ready(function() {
 			content += "<th id='username' class=''>Username</th>";
 			content += "<th id='status' class=''>Status</th>";
 			content += "<th id='relationship'>Relationship</th>";
-			content += "</tr></thead><tbody>";
 
 			// loop to print users
-			for (var x in list) {
-				if (list[x]['id'] != loggedID) {
+			content += "</tr></thead><tbody>";
+			for (var x in users) {
+				if (users[x]['id'] != tempID) {
 					content += "<tr>";
-					content += "<td class='user pointer' id='"+list[x]['id']+"'>"+list[x]['username']+"</td>";
-					content += "<td>\""+list[x]['status']+"\"</td>";
-					//if ( ) {
-					content += "<td id='add"+list[x]['id']+"' class='friendship pointer'>Add Friend</td>";
+					content += "<td class='user pointer' id='"+users[x]['id']+"'>"+users[x]['username']+"</td>";
+					content += "<td>\""+users[x]['status']+"\"</td>";
+					content += "<td id='add"+users[x]['id']+"' class='add-friend pointer' >Add friend</td>";
 					content += "</tr>";
 				}
 			}
-
 			content += "</tbody></table>";
 			return content;
 		});
+
 		setProfileUser(tempID, users);
+
 	}
 
 	function setProfileUser(id, allusers) {
@@ -55,13 +58,33 @@ $(document).ready(function() {
 		}
 	}
 
+	function friendStatus() {
+		//console.log(friends);
+		//console.log(tempID);
+		var flist = new Array();
+		for (var i in friends) {
+			if (friends[i]['user_id'] == tempID) {
+				flist.push(friends[i]['friend_id']);
+			} else if (friends[i]['friend_id'] == tempID) {
+				flist.push(friends[i]['user_id']);
+			}
+		}
+		//console.log(flist);
+		for (var i in flist) {
+			$("#add"+flist[i]).removeClass().addClass("friend").html("Friend");
+		}
+		
+	}
+
 	// submit function
 	function formSubmit() {
 		$.post(
 			$("form").attr('action'),
 			$("form").serialize(),
 			function(data) {
-				friendsDisplay(data);
+				//console.log(data);
+				usersDisplay(data);
+				friendStatus();
 			},
 			"json"
 		);
@@ -73,8 +96,8 @@ $(document).ready(function() {
 	// change profile view
 	$(document).on("click", ".user", function() {
 		tempID = $(this).attr("id");
-		//console.log(tempID);
 		setProfileUser(tempID, users);
+		formSubmit();
 	});
 
 	// hover states for status
@@ -130,7 +153,7 @@ $(document).ready(function() {
 	});
 
 	// add a friend
-	$(document).on("click", ".friendship", function() {
+	$(document).on("click", ".add-friend", function() {
 		//alert('hi');
 		var temp = $(this).attr('id');
 		temp = temp.slice(3);

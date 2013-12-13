@@ -52,7 +52,10 @@ class ProcessDash
 		$friends = $this->connection->fetch_all($query);
 
 		// send all users data to front end
-		echo json_encode($users);
+		$data = array();
+		$data['users'] = $users;
+		$data['friends'] = $friends;
+		echo json_encode($data);
 	}
 
 	private function editStatus() 
