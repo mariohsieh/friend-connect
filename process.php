@@ -87,10 +87,11 @@ class Process
 			else
 			{
 				$this->alerts['loginError'] = "Login error.  Please try again.";
+
+				// send alerts to frontend using json
+				echo json_encode($this->alerts);
 			}
 		}
-		// send alerts to frontend using json
-		echo json_encode($this->alerts);
 	}
 
 	private function register()

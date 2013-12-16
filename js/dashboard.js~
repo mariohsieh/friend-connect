@@ -14,8 +14,8 @@ $(document).ready(function() {
 		friends = list['friends'];
 		//console.log(users);		
 
+		// print results table
 		$("#results").html("");
-
 		$("#results").append(function() {
 			var content = "<table id='friends-table'><thead>";
 			content += "<tr>";
@@ -27,7 +27,7 @@ $(document).ready(function() {
 			content += "</tr></thead><tbody>";
 			for (var x in users) {
 				if (users[x]['id'] != tempID) {
-					content += "<tr>";
+					content += "<tr class='table-rows'>";
 					content += "<td class='user pointer' id='"+users[x]['id']+"'>"+users[x]['username']+"</td>";
 					content += "<td>\""+users[x]['status']+"\"</td>";
 					content += "<td id='add"+users[x]['id']+"' class='add-friend pointer' >Add friend</td>";
@@ -39,7 +39,6 @@ $(document).ready(function() {
 		});
 
 		setProfileUser(tempID, users);
-
 	}
 
 	function setProfileUser(id, allusers) {
@@ -59,8 +58,6 @@ $(document).ready(function() {
 	}
 
 	function friendStatus() {
-		//console.log(friends);
-		//console.log(tempID);
 		var flist = new Array();
 		for (var i in friends) {
 			if (friends[i]['user_id'] == tempID) {
@@ -73,7 +70,6 @@ $(document).ready(function() {
 		for (var i in flist) {
 			$("#add"+flist[i]).removeClass().addClass("friend").html("Friend");
 		}
-		
 	}
 
 	// submit function
@@ -82,7 +78,7 @@ $(document).ready(function() {
 			$("form").attr('action'),
 			$("form").serialize(),
 			function(data) {
-				//console.log(data);
+				console.log(data);
 				usersDisplay(data);
 				friendStatus();
 			},
@@ -96,7 +92,7 @@ $(document).ready(function() {
 	// change profile view
 	$(document).on("click", ".user", function() {
 		tempID = $(this).attr("id");
-		setProfileUser(tempID, users);
+		//setProfileUser(tempID, users);
 		formSubmit();
 	});
 
@@ -139,6 +135,8 @@ $(document).ready(function() {
 		$("#overlay").css("display", "none");
 		$("#display-status").css("visibility", "visible");
 		$(".edit").remove();
+		$("#action_key").val("friendsList");
+		//console.log(tempID);
 	});
 
 	// toggle profile list or profile wall
@@ -164,6 +162,7 @@ $(document).ready(function() {
 		formSubmit();
 		//console.log($("#user_id").val());
 		//console.log($("#friend_id").val());
+		
 	});
 
 	/////////// actions on page load ///////////////

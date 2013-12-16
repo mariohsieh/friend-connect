@@ -85,6 +85,16 @@ img#profile-pic
 	width: 100%;
 }
 
+	thead th
+	{
+		padding: 8px 0px;
+	}
+
+	tbody td
+	{
+		padding: 0px 0px 15px;
+	}
+
 	th
 	{
 		background-color: #C0C0C0;
@@ -92,7 +102,7 @@ img#profile-pic
 
 	td
 	{
-		padding: 0px 7px 0px;
+		margin: 0px 7px 0px;
 	}
 
 	#username
@@ -110,10 +120,9 @@ img#profile-pic
 		width: 20%;
 	}
 
-	.friendship
+	.friend, .add-friend
 	{
 		text-align: center;
-		
 	}
 
 
