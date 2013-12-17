@@ -81,17 +81,18 @@ class Process
 
 				//var_dump($_SESSION);
 				//die();
+				//var_dump($users);
 				header("Location: dashboard.php");
 				die();
 			}
 			else
 			{
 				$this->alerts['loginError'] = "Login error.  Please try again.";
-
-				// send alerts to frontend using json
-				echo json_encode($this->alerts);
-			}
+			}		
 		}
+
+		// send alerts to frontend using json
+		echo json_encode($this->alerts);
 	}
 
 	private function register()
@@ -160,9 +161,6 @@ class Process
 				}
 			}
 		}
-
-		//var_dump($this->alerts);
-		//die();
 
 		// send data to frontend using json
 		echo json_encode($this->alerts);

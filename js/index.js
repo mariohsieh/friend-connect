@@ -6,13 +6,16 @@ $(document).ready(function() {
 		switch (temp) {
 			case 'register':
 				$("#action_key").val("register");
+				formSubmit();
 				break;	
 			case 'login':
 				$("#action_key").val("login");
+				formSubmit();
 				break;
 			default:
 				break;
 		}
+		return false;
 	});
 
 	/////////////// validation checks //////////////////
@@ -239,10 +242,11 @@ $(document).ready(function() {
 	});
 
 	// form submission
-	$("form").submit(function() {
+	//$("form").submit(function() {
+	function formSubmit() {
 		$.post(
-			$(this).attr('action'),
-			$(this).serialize(),
+			$("form").attr('action'),
+			$("form").serialize(),
 			function(data) {
 				$("#alerts").empty();
 				console.log(data);
@@ -256,8 +260,8 @@ $(document).ready(function() {
 			},
 			"json"
 		);
-		return false;
-	});
+		//return false;
+	}
 });
 
 

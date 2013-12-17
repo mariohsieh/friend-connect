@@ -26,7 +26,7 @@ $(document).ready(function() {
 			// loop to print users
 			content += "</tr></thead><tbody>";
 			for (var x in users) {
-				if (users[x]['id'] != tempID) {
+				if (users[x]['id'] != loggedID) {
 					content += "<tr class='table-rows'>";
 					content += "<td class='user pointer' id='"+users[x]['id']+"'>"+users[x]['username']+"</td>";
 					content += "<td>\""+users[x]['status']+"\"</td>";
@@ -58,17 +58,19 @@ $(document).ready(function() {
 	}
 
 	function friendStatus() {
-		var flist = new Array();
-		for (var i in friends) {
-			if (friends[i]['user_id'] == tempID) {
-				flist.push(friends[i]['friend_id']);
-			} else if (friends[i]['friend_id'] == tempID) {
-				flist.push(friends[i]['user_id']);
+		if (tempID == loggedID) {
+			var flist = new Array();
+			for (var i in friends) {
+				if (friends[i]['user_id'] == tempID) {
+					flist.push(friends[i]['friend_id']);
+				} else if (friends[i]['friend_id'] == tempID) {
+					flist.push(friends[i]['user_id']);
+				}
 			}
-		}
-		//console.log(flist);
-		for (var i in flist) {
-			$("#add"+flist[i]).removeClass().addClass("friend").html("Friend");
+			//console.log(flist);
+			for (var i in flist) {
+				$("#add"+flist[i]).removeClass().addClass("friend").html("Friend");
+			}
 		}
 	}
 
@@ -92,9 +94,15 @@ $(document).ready(function() {
 	// change profile view
 	$(document).on("click", ".user", function() {
 		tempID = $(this).attr("id");
-		//setProfileUser(tempID, users);
-		formSubmit();
+		$("#action_key").val("friendsList");
+		setProfileUser(tempID, users);
 	});
+	$(document).on("click", "#home", function() {
+		tempID = loggedID;
+		$("#action_key").val("friendsList");
+		setProfileUser(tempID, users);		
+	});
+
 
 	// hover states for status
 	$(document).on("mouseenter", "#display-status", function() {
@@ -135,7 +143,6 @@ $(document).ready(function() {
 		$("#overlay").css("display", "none");
 		$("#display-status").css("visibility", "visible");
 		$(".edit").remove();
-		$("#action_key").val("friendsList");
 		//console.log(tempID);
 	});
 

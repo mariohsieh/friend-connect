@@ -76,12 +76,12 @@ class ProcessDash
 		$query = "INSERT INTO friends (user_id, friend_id, created_at) VALUES ('{$_POST['user_id']}', '{$_POST['friend_id']}', NOW())";
 		mysql_query($query);
 
-		//$this->friendsList();
+		$this->friendsList();
 	}
 
 	private function wall()
 	{
-		header("Location: dashboard.php");
+
 	}
 
 }

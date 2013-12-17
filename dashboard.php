@@ -36,7 +36,7 @@
 	<header>
 		<nav class="container center">
 			<ul class="reset">
-				<li>FriendConnect</li>
+				<li id="home" class="pointer">FriendConnect</li>
 				<li id="logout-but" class="right"><a href="process-dash.php">Logout</a></li>
 				<li id="login-name" class="right">Welcome 
 <?
