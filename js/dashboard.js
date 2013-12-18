@@ -3,6 +3,7 @@ $(document).ready(function() {
 	//set variables
 	var users = new Array();
 	var friends = new Array();
+	var messages = new Array();
 	var profile = new Array();
 	var tempID = $("#profile-id").html();
 	var loggedID = $("#profile-id").html();
@@ -82,12 +83,19 @@ $(document).ready(function() {
 
 	// display wall and its messages
 	function displayWall(data) {
+		messages = data['messages'];
 		$("#results").html("");
 		var content = "<textarea class='message-input' name='message'></textarea>";
 		content += "<input type='hidden' name='profile_id' value='"+tempID+"' />";
 		content += "<div class='message-submit pointer'>Post!</div>";
 		$("#results").append(content);
-		console.log(data);
+		console.log(messages);
+
+		for (var x in messages) {
+			if (messages[x]['profile_id'] == tempID) {
+				$("#results").append("<p>"+messages[x]['message']+"</p>");
+			}
+		}
 	}
 
 	// submit function
@@ -97,8 +105,14 @@ $(document).ready(function() {
 			$("form").serialize(),
 			function(data) {
 				console.log(data);
-				usersDisplay(data);
-				friendStatus();
+
+				if (data['messages'] != null) {
+					//console.log(data['messages']);
+					displayWall(data);
+				} else {
+					usersDisplay(data);
+					friendStatus();
+				}
 			},
 			"json"
 		);
@@ -112,9 +126,9 @@ $(document).ready(function() {
 		tempID = $(this).attr("id");
 		$("#friendsList").css("display", "none");
 		$("#profileWall").addClass("center").css("width", "100%");
-		$("#action_key").val("friendsList");
+		$("#action_key").val("wall");
 		setProfileUser(tempID, users);
-		displayWall(tempID);
+		formSubmit();
 	});
 	$(document).on("click", "#home", function() { //back to logged-in user
 		tempID = loggedID;
@@ -172,12 +186,11 @@ $(document).ready(function() {
 	$(document).on("click", ".menu-choice", function() {
 		if ($(this).attr("id") == "friendsList") {
 			$("#action_key").val("friendsList");
-			formSubmit();
 		} else {
 			$("#action_key").val("wall");
-			//displayWall();		
+			//displayWall();
 		}
-
+		formSubmit();
 	});
 
 	// add a friend

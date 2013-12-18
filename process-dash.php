@@ -84,10 +84,10 @@ class ProcessDash
 
 	private function wall()
 	{
-		$query = "SELECT * FROM friends";
+		$query = "SELECT * FROM messages";
 		$messages = $this->connection->fetch_all($query);
 
-		// sendmessages data to front end
+		// send messages data to front end
 		$data = array();
 		$data['messages'] = $messages;
 		echo json_encode($data);		
