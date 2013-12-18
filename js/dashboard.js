@@ -29,7 +29,7 @@ $(document).ready(function() {
 				if (users[x]['id'] != loggedID) {
 					content += "<tr class='table-rows'>";
 					content += "<td class='user pointer' id='"+users[x]['id']+"'>"+users[x]['username']+"</td>";
-					content += "<td>\""+users[x]['status']+"\"</td>";
+					content += "<td class='status'>\""+users[x]['status']+"\"</td>";
 					content += "<td id='add"+users[x]['id']+"' class='add-friend pointer' >Add friend</td>";
 					content += "</tr>";
 				}
@@ -74,6 +74,13 @@ $(document).ready(function() {
 		}
 	}
 
+	// display wall and its messages
+	function displayWall(data) {
+		$("#results").html("");
+		var content = "<textarea></textarea><div>Post!</div>";
+		$("#results").append(content);
+	}
+
 	// submit function
 	function formSubmit() {
 		$.post(
@@ -88,19 +95,21 @@ $(document).ready(function() {
 		);
 		//return false;
 	}
-
+ 
 	//////////////////////// event functions ///////////////////////////
 
-	// change profile view
+	// change profile view & show wall
 	$(document).on("click", ".user", function() {
 		tempID = $(this).attr("id");
 		$("#action_key").val("friendsList");
 		setProfileUser(tempID, users);
+		displayWall(tempID);
 	});
-	$(document).on("click", "#home", function() {
+	$(document).on("click", "#home", function() { //back to logged-in user
 		tempID = loggedID;
+		setProfileUser(tempID, users);
 		$("#action_key").val("friendsList");
-		setProfileUser(tempID, users);		
+		formSubmit();
 	});
 
 
@@ -153,7 +162,6 @@ $(document).ready(function() {
 		} else {
 			$("#action_key").val("wall");
 		}
-
 		formSubmit();
 	});
 

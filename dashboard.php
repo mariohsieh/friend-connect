@@ -56,8 +56,8 @@
 			<p id="display-created"></p>
 		</article>
 		<article id="wrap-menu">
-			<div id="friendsList" class="menu-choice pointer">Friends List</div>
-			<div id="profileWall" class="menu-choice pointer">Message Wall</div>
+			<div id="friendsList" class="menu-choice pointer">Users List</div>
+			<div id="profileWall" class="menu-choice pointer">My Wall</div>
 		</article>
 		<article id="results">
 		</article>

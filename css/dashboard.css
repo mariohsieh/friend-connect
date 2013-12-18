@@ -80,6 +80,13 @@ img#profile-pic
 	display: inline-block;
 }
 
+.menu-choice:hover
+{
+	background-color: black;
+	color: white;
+}
+
+
 #friends-table
 {
 	width: 100%;
@@ -92,7 +99,7 @@ img#profile-pic
 
 	tbody td
 	{
-		padding: 0px 0px 15px;
+		padding: 10px 0px;
 	}
 
 	th
@@ -103,6 +110,11 @@ img#profile-pic
 	td
 	{
 		margin: 0px 7px 0px;
+	}
+
+	.user, .status
+	{
+		padding-left: 10px;
 	}
 
 	#username
@@ -125,6 +137,11 @@ img#profile-pic
 		text-align: center;
 	}
 
+	.add-friend
+	{
+		background-color: black;
+		color: white;		
+	}
 
 
 
