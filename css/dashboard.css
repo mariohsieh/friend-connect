@@ -149,6 +149,7 @@ img#profile-pic
 	width: 75%;
 	resize: none;
 	padding: 10px;
+	margin: 0px 0px 0px 89px;
 }
 
 .message-submit
@@ -158,13 +159,34 @@ img#profile-pic
 	background-color: black;
 	color: white;
 	padding: 5px;
+	margin: 0px 0px 0px 625px;
 }
 
+.message-text, .message-poster
+{
+	text-align: right;
+}
 
+.message-text
+{
+	font-size: 1.2em;
+}
 
+.message-poster
+{
+	font-size: .9em;
+}
 
-
-
+#back-but
+{
+	background-color: black;
+	color: white;
+	position: absolute;
+	display: none;
+	z-index: 75;
+	margin: 30px 0px 0px 600px;
+	padding: 10px;
+}
 
 
 

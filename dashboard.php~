@@ -49,6 +49,7 @@
 	</header>
 	<section class="container center">
 		<article id="display-info">
+			<div id="back-but" class="pointer"></div>
 			<img id="profile-pic" alt="Profile Pic" class="left" />
 			<h2 id="display-user" class="reset"></h2>
 			<p id="display-status"></p>			

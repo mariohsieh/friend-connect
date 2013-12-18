@@ -83,6 +83,7 @@ $(document).ready(function() {
 
 	// display wall and its messages
 	function displayWall(data) {
+		$("#back-but").css("display", "inline");
 		messages = data['messages'];
 		$("#results").html("");
 		var content = "<textarea class='message-input' name='message'></textarea>";
@@ -93,7 +94,12 @@ $(document).ready(function() {
 
 		for (var x in messages) {
 			if (messages[x]['profile_id'] == tempID) {
-				$("#results").append("<p>"+messages[x]['message']+"</p>");
+				$("#results").append("<p class='message-text'>"+messages[x]['message']+"</p>");
+				for (var y in users) {
+					if (users[y]['id'] == messages[x]['poster_id']) {
+						$("#results").append("<p class='message-poster'>Posted by "+users[y]['username']+"</p>");
+					}
+				}
 			}
 		}
 	}
@@ -133,6 +139,7 @@ $(document).ready(function() {
 	$(document).on("click", "#home", function() { //back to logged-in user
 		tempID = loggedID;
 		setProfileUser(tempID, users);
+		$("#back-but").css("display", "none");
 		$("#friendsList").css("display", "inline-block");
 		$("#profileWall").removeClass("center").css("width", "49%");
 		$("#action_key").val("friendsList");
@@ -188,7 +195,6 @@ $(document).ready(function() {
 			$("#action_key").val("friendsList");
 		} else {
 			$("#action_key").val("wall");
-			//displayWall();
 		}
 		formSubmit();
 	});
@@ -213,6 +219,12 @@ $(document).ready(function() {
 		$("#action_key").before("<input type='hidden' name='poster_id' value='"+loggedID+"' />");
 		$("#action_key").val("addMessage");		
 		formSubmit();
+	});
+
+	// back button
+	$(document).on("click", "#back-but", function() {
+		$(this).css("display", "none");
+		$("#home").click();
 	});
 
 	/////////// actions on page load ///////////////
