@@ -44,7 +44,13 @@ $(document).ready(function() {
 	function setProfileUser(id, allusers) {
 		for (var x in allusers ) {
 			if (id == allusers[x]['id']) {
-				$("#display-user").html(allusers[x]['username']+"'s profile");
+				if (id == loggedID) {
+					$("#display-user").html("My profile");
+					$("#profileWall").html("My Wall");
+				} else {
+					$("#display-user").html(allusers[x]['username']+"'s profile");
+					$("#profileWall").html(allusers[x]['username'] +"'s Wall");
+				}
 				if (allusers[x]['status'] == "") {
 					$("#display-status").html("click to add status");
 				} else {
@@ -77,8 +83,11 @@ $(document).ready(function() {
 	// display wall and its messages
 	function displayWall(data) {
 		$("#results").html("");
-		var content = "<textarea></textarea><div>Post!</div>";
+		var content = "<textarea class='message-input' name='message'></textarea>";
+		content += "<input type='hidden' name='profile_id' value='"+tempID+"' />";
+		content += "<div class='message-submit pointer'>Post!</div>";
 		$("#results").append(content);
+		console.log(data);
 	}
 
 	// submit function
@@ -101,6 +110,8 @@ $(document).ready(function() {
 	// change profile view & show wall
 	$(document).on("click", ".user", function() {
 		tempID = $(this).attr("id");
+		$("#friendsList").css("display", "none");
+		$("#profileWall").addClass("center").css("width", "100%");
 		$("#action_key").val("friendsList");
 		setProfileUser(tempID, users);
 		displayWall(tempID);
@@ -108,6 +119,8 @@ $(document).ready(function() {
 	$(document).on("click", "#home", function() { //back to logged-in user
 		tempID = loggedID;
 		setProfileUser(tempID, users);
+		$("#friendsList").css("display", "inline-block");
+		$("#profileWall").removeClass("center").css("width", "49%");
 		$("#action_key").val("friendsList");
 		formSubmit();
 	});
@@ -159,10 +172,12 @@ $(document).ready(function() {
 	$(document).on("click", ".menu-choice", function() {
 		if ($(this).attr("id") == "friendsList") {
 			$("#action_key").val("friendsList");
+			formSubmit();
 		} else {
 			$("#action_key").val("wall");
+			//displayWall();		
 		}
-		formSubmit();
+
 	});
 
 	// add a friend
@@ -178,6 +193,13 @@ $(document).ready(function() {
 		//console.log($("#user_id").val());
 		//console.log($("#friend_id").val());
 		
+	});
+
+	// add message
+	$(document).on("click", ".message-submit", function() {
+		$("#action_key").before("<input type='hidden' name='poster_id' value='"+loggedID+"' />");
+		$("#action_key").val("addMessage");		
+		formSubmit();
 	});
 
 	/////////// actions on page load ///////////////

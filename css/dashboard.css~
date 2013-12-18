@@ -143,6 +143,31 @@ img#profile-pic
 		color: white;		
 	}
 
+textarea
+{
+	height: 75px;
+	width: 75%;
+	resize: none;
+	padding: 10px;
+}
+
+.message-submit
+{
+	text-align: center;
+	width: 50px;
+	background-color: black;
+	color: white;
+	padding: 5px;
+}
+
+
+
+
+
+
+
+
+
 
 
 

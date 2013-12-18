@@ -28,6 +28,9 @@ class ProcessDash
 				case 'wall':
 					$this->wall();
 					break;
+				case 'addMessage':
+					$this->addMessage();
+					break;
 				default:
 					break;
 			}
@@ -81,9 +84,26 @@ class ProcessDash
 
 	private function wall()
 	{
+		$query = "SELECT * FROM friends";
+		$messages = $this->connection->fetch_all($query);
 
+		// sendmessages data to front end
+		$data = array();
+		$data['messages'] = $messages;
+
+		echo json_encode($data);		
 	}
+	
+	private function addMessage()
+	{
+		//var_dump($_POST);
+		//die();
 
+		$query = "INSERT INTO messages (profile_id, message, poster_id, created_at) VALUES ('{$_POST['profile_id']}', '{$_POST['message']}', '{$_POST['poster_id']}', NOW())";
+		mysql_query($query);
+
+		$this->wall();
+	}
 }
 
 // create instance of process dashboard
