@@ -50,11 +50,13 @@
 	<section class="container center">
 		<article id="display-info">
 			<div id="back-but" class="pointer">Back</div>
-			<img id="profile-pic" alt="Profile Pic" class="left" />
-			<h2 id="display-user" class="reset"></h2>
-			<p id="display-status"></p>			
-			<p id="display-email"></p>
-			<p id="display-created"></p>
+			<img id="profile-pic" alt="Profile Pic" />
+			<div id="profile-data">
+				<h2 id="display-user" class="reset"></h2>
+				<p id="display-status"></p>			
+				<p id="display-email"></p>
+				<p id="display-created"></p>
+			</div>
 		</article>
 		<article id="wrap-menu">
 			<div id="friendsList" class="menu-choice pointer">Users List</div>

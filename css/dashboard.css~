@@ -14,6 +14,11 @@ a
 	display: none;
 }
 
+header
+{
+	margin-top: 2px;
+}
+
 nav li
 {
 	display: inline;
@@ -25,11 +30,13 @@ nav li
 	color: white;
 	font-size: .8em;
 	padding: 5px;
+	margin-top: -4px;
 }
 
 #login-name
 {
 	font-size: .8em;
+	margin: 0px 5px 0px 0px;
 }
 
 #display-info
@@ -43,6 +50,14 @@ img#profile-pic
 	width: 125px;
 	height: 125px;
 	background-color: black;
+	/*display: inline-block;*/
+	position: absolute;
+}
+
+div#profile-data
+{
+	margin: 0px 0px 0px 140px;
+	/*display: inline-block;*/
 }
 
 #edit-status, #edit-submit
@@ -149,7 +164,7 @@ img#profile-pic
 	width: 75%;
 	resize: none;
 	padding: 10px;
-	margin: 0px 0px 0px 89px;
+	margin: 10px 0px 0px 89px;
 }
 
 .message-submit
@@ -159,7 +174,7 @@ img#profile-pic
 	background-color: black;
 	color: white;
 	padding: 5px;
-	margin: 0px 0px 0px 625px;
+	margin: 10px 0px 0px 625px;
 }
 
 .message-text, .message-poster
@@ -185,6 +200,7 @@ img#profile-pic
 	display: none;
 	z-index: 75;
 	margin: 30px 0px 0px 600px;
+	padding: 10px;
 }
 
 

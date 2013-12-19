@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+	// set login boolean
+	var loginSuccess = false;
+
 	// action choice on form submission
 	$(document).on("click", ".submit", function() {
 		var temp = $(this).attr("id");
@@ -206,27 +209,19 @@ $(document).ready(function() {
 		}
 	});
 
-/*
-	function checkRegistration() {
-		if ($("#01,#02, #03, #04").css("background-color") == "green") {
-			console.log("holla!");
-		}
-	}
-
-	$(".signin-box").keyup(function() {
-		checkRegistration();
-	});
-*/
-
 	// clear inputs fields and status dots
 	$(document).on("click", ".clear", function() {
 		$(".check-dot").css("background-color", "white");
 	});
 
-	//clear alerts
+	//clear alerts by pressing 'OK' button
 	$(document).on("click", ".alert-but", function() {
 			$("#overlay").css("display", "none");
 			$("#alerts").css("display", "none");
+
+			if (loginSuccess) {
+				window.location("dashboard.php");
+			}
 	});
 
 	// toggle between registration and login forms
@@ -252,9 +247,17 @@ $(document).ready(function() {
 				console.log(data);
 				$("#overlay").fadeIn("fast");
 				$("#alerts").fadeIn(400);
+
 				for (var x in data) {
 					$("#alerts").prepend("<p>"+data[x]+"</p>");
 				}
+
+				if (data['loginSuccess'] != null) {
+					loginSuccess = true;
+				} else {
+					loginSuccess = false;
+				}
+
 				$("#alerts").append("<input type='submit' class='alert-but center pointer' autofocus value='OK' />");
 				$("#alerts input").focus();
 			},

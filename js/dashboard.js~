@@ -13,7 +13,7 @@ $(document).ready(function() {
 	function usersDisplay(list) {
 		users = list['users'];
 		friends = list['friends'];
-		//console.log(users);		
+		$("#back-but").css("display", "none");		
 
 		// print results table
 		$("#results").html("");
@@ -139,7 +139,6 @@ $(document).ready(function() {
 	$(document).on("click", "#home", function() { //back to logged-in user
 		tempID = loggedID;
 		setProfileUser(tempID, users);
-		$("#back-but").css("display", "none");
 		$("#friendsList").css("display", "inline-block");
 		$("#profileWall").removeClass("center").css("width", "49%");
 		$("#action_key").val("friendsList");
