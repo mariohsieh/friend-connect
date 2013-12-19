@@ -220,7 +220,7 @@ $(document).ready(function() {
 			$("#alerts").css("display", "none");
 
 			if (loginSuccess) {
-				window.location("dashboard.php");
+				window.location.assign("dashboard.php");
 			}
 	});
 
@@ -229,8 +229,10 @@ $(document).ready(function() {
 		if ($("#login-wrap").css("display") == "none") {
 			$("#register-wrap").css("display", "none");
 			$("#login-wrap").fadeIn("fast");
+			$("#login-note").fadeIn("fast");
 		} else {
 			$("#login-wrap").css("display", "none");
+			$("#login-note").css("display", "none");
 			$("#register-wrap").fadeIn("fast");
 		}
 		return false;

@@ -229,8 +229,10 @@ $(document).ready(function() {
 		if ($("#login-wrap").css("display") == "none") {
 			$("#register-wrap").css("display", "none");
 			$("#login-wrap").fadeIn("fast");
+			$("#login-note").fadeIn("fast");
 		} else {
 			$("#login-wrap").css("display", "none");
+			$("#login-note").css("display", "none");
 			$("#register-wrap").fadeIn("fast");
 		}
 		return false;

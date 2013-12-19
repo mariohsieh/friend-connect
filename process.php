@@ -85,7 +85,7 @@ class Process
 				//header("Location: dashboard.php");
 				//die();
 
-				$this->alerts['loginSuccess'] = "Welcome back " . $users[0]['username'] . "!  Please continue to see your dashboard.";				
+				$this->alerts['loginSuccess'] = "Welcome back " . $users[0]['username'] . "!  Please continue to see your dashboard.";
 			}
 			else
 			{

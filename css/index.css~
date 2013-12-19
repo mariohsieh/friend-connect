@@ -106,7 +106,7 @@ header
 {
 	width: 100%;
 	border-bottom: 2px solid black;
-	padding: 3px 0px;
+	padding: 5px 0px;
 }
 
 nav ul
@@ -198,6 +198,9 @@ nav ul
 	width: 110px;
 }
 
-
+footer p
+{
+	width: 100%;
+}
 
 

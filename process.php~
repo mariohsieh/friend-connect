@@ -86,7 +86,6 @@ class Process
 				//die();
 
 				$this->alerts['loginSuccess'] = "Welcome back " . $users[0]['username'] . "!  Please continue to see your dashboard.";				
-
 			}
 			else
 			{
